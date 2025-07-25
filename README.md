@@ -108,4 +108,4 @@ if __name__ == '__main__':
 
 ---
 
-> **Автор:** [Ваше Имя или ник](https://github.com/YUNUSULTRA123)
+> **Автор:** [@YUNUSULTRA123](https://github.com/YUNUSULTRA123)
