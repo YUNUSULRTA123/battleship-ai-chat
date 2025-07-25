@@ -17,8 +17,8 @@
 ### 1.🧾 Клонируйте репозиторий
 
 ```bash
-git clone https://github.com/<ваш-репозиторий>/battleship-flask.git
-cd battleship-flask
+git clone https://github.com/YUNUSULRTA123/battleship-ai-chat.git
+cd battleship-ai-chat
 ```
 
 ### 2.📦 Установите зависимости
