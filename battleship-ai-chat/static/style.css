@@ -1,0 +1,176 @@
+/* Фон с морским изображением и наложением */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #03045e;
+  text-align: center;
+  padding: 20px;
+
+  background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+  background-size: cover;
+
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 48, 75, 0.6);
+  z-index: -1;
+}
+
+/* Общие стили */
+h1, h2 {
+  margin-bottom: 10px;
+}
+
+#game-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+/* Поля с игрой */
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 30px);
+  grid-template-rows: repeat(10, 30px);
+  gap: 2px;
+  background-color: #004080;
+  padding: 10px;
+  border-radius: 8px;
+  user-select: none;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.cell {
+  width: 30px;
+  height: 30px;
+  background-color: #a0c4ff; /* вода */
+  border: 1px solid #08306b;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.15s ease;
+}
+
+.cell:hover {
+  filter: brightness(1.2);
+  transform: scale(1.1);
+}
+
+.cell:active {
+  transform: scale(0.95);
+}
+
+/* Анимация попадания */
+@keyframes hitPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 15px 5px rgba(230, 57, 70, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(230, 57, 70, 0);
+  }
+}
+
+.cell.hit {
+  background-color: #e63946; /* попадание */
+  animation: hitPulse 0.6s ease forwards;
+  cursor: default;
+}
+
+/* Анимация промаха */
+@keyframes missFade {
+  0% {
+    background-color: #f1faee;
+  }
+  100% {
+    background-color: #a0c4ff;
+  }
+}
+
+.cell.miss {
+  background-color: #f1faee; /* промах */
+  animation: missFade 1s ease forwards;
+  cursor: default;
+}
+
+/* Информация и статус */
+#info {
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #023e8a;
+  transition: color 0.4s ease;
+}
+
+/* Чат */
+#chat-container {
+  width: 320px;
+  margin: 30px auto 0 auto;
+  background: #f0f0f0;
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+#chat-container:hover {
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+
+#chat-box {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 5px;
+  background: white;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  font-family: monospace;
+  font-size: 14px;
+  text-align: left;
+  scroll-behavior: smooth;
+}
+
+#chat-input {
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  flex-grow: 0;
+  width: calc(100% - 90px);
+  display: inline-block;
+  transition: border-color 0.3s ease;
+}
+
+#chat-input:focus {
+  border-color: #0077b6;
+  outline: none;
+}
+
+button {
+  margin-left: 5px;
+  padding: 8px 12px;
+  background-color: #0077b6;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: top;
+  transition: background-color 0.3s ease, transform 0.15s ease;
+}
+
+button:hover {
+  background-color: #023e8a;
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(0.95);
+}
